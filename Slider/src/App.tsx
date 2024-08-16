@@ -1,73 +1,140 @@
-import { FaArrowRight } from "react-icons/fa6"
-import { FaArrowLeft } from "react-icons/fa6"
-import image from "./assets/wallpapersden.com_moon-view-orion-spacecraft-of-nasa_1920x1080.jpg";
-import image1 from "./assets/wallpapersden.com_comet-neowise_5616x3744.jpg";
-import image2 from "./assets/wallpapersden.com_earth-from-above-planet_1280x1024.jpg";
-import image3 from "./assets/wallpapersden.com_fog-spiral-constellations_1920x1200.jpg";
-import image4 from "./assets/wallpapersden.com_moon-and-planet-from-space_3072x1536.jpg";
-import image5 from "./assets/wallpapersden.com_orange-bowl-nebula_3840x2160.jpg";
-import image6 from "./assets/wallpapersden.com_rosette-nebula_1920x1354.jpg";
-
-
-const App = () => {
-  const items =[
-    {
-      name:"Moon",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image
-    },
-    {
-      name:"Comet",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image1
-    },
-    {
-      name:"Earth",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image2
-    },
-    {
-      name:"Spiral constellations",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image3
-    },
-    {
-      name:"Moon and Earth",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image4
-    },
-    {
-      name:"Orange Bowl Nebula",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image5
-    },
-    {
-      name:"Rossette Nebula",
-      desc:"Lorem ipsum dolor sit amet, consectetur adipisicing ",
-      background:image6
-    }
-  ]
-  return (
-    <div className="container">
-      <div className="slide">
-        {
-          items.map((item,index)=>(
-            <div key={index} className="item" style={{background: `url(${item.background})`}}>
-          <div className="content">
-            <h2 className="name">{item.name}</h2>
-            <p className="desc">{item.desc}</p>
-            <button>More</button>
-          </div>
-        </div>
-          ))
-        }
-      </div>
-      <div>
-        <button className="previous"><FaArrowLeft /></button>
-        <button className="next"><FaArrowRight /></button>
-      </div>
-    </div>
-  )
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
 }
-``
-export default App
+
+body{
+  background-color: black;
+  color: aliceblue;
+  overflow: hidden;
+
+}
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  background: #0000;
+  box-shadow: 0 30px 50px #1a191900;
+}
+
+.container .slide .item{
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0,-50%);
+  box-shadow: 0 30px 50px #1f1919;
+  border-radius: 20px;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+  top: 0;
+  left: 0;
+  transform: translate(0,0);
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .item:nth-child(3){
+  left: 50%;
+}
+
+.slide .item:nth-child(4){
+  left: calc(50% + 220px);
+}
+
+.slide .item:nth-child(5){
+  left: calc(50% + 440px);
+}
+
+.slide .item:nth-child(n+6){
+  left: calc(50% + 660px);
+  opacity: 0;
+}
+
+
+
+.item .content{
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  width: 300px;
+  text-align: left;
+  color: #eee;
+  transform: translate(0 , -50%);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: none;
+}
+
+.slide .item:nth-child(2) .content{
+  display: block;
+}
+
+.content .name {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  animation: animation 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content .desc {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  animation: animation 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content button{
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(192, 189, 185);
+  color: rgb(19, 18, 18);
+  animation: animation 1s ease-in-out 0.3s 1 forwards;
+}
+
+
+@keyframes animate {
+  from{
+    opacity:1;
+    transform: translate(0,100px);
+    filter: blur(33px);
+
+  }
+  to{
+    transform: translate(0);
+    filter: blur(0);
+  }
+}
+
+.button{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+}
+
+.button button{
+  width: 40px;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 0 3px;
+  background: #080808;
+  color: rgb(255, 104, 49);
+  transition: 0.3s;
+}
+
+.button button:hover{
+  background: #504f4f;
+}
